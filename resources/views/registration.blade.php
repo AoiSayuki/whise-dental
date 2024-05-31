@@ -12,8 +12,18 @@
     @include('partials.registrationHeader')
 
     <div class="form-container">
-        <form method="POST" action="#" id="multi-step-form">
+        <form method="POST" action="{{ route('addPatient') }}" id="multi-step-form">
             @csrf
+            @method('post')
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
             {{-- FIRST PAGE --}}
             <div class="form-section active" id="step1">
                 <div class="marker">PERSONAL INFORMATION</div>
@@ -28,7 +38,7 @@
                 <div class=""> <input type="text" placeholder="Carlos" name="middle_name"> </div>
                 {{-- DATE OF BIRTH --}}
                 <div class=""> <label for="date_of_birth">Date of Birth</label> </div>
-                <div class=""> <input type="date" name="birthday"> </div>
+                <div class=""> <input type="date" name="date_of_birth"> </div>
                 {{-- GENDER --}}
                 <div class=""> <label for="gender">Gender</label> </div>
                 <div class="">
@@ -154,10 +164,10 @@
                 <div class=""> <input type="text" placeholder="juandc02" name="username"> </div>
                 {{-- PASSWORD --}}
                 <div class=""> <label for="password">Password</label> </div>
-                <div class=""> <input type="password" placeholder="password" name="password"> </div>
+                <div class=""> <input type="text" placeholder="password" name="password"> </div>
                 {{-- VERIFY PASSWORD --}}
                 <div class=""> <label for="verify_password">Verify Password</label> </div>
-                <div class=""> <input type="password" placeholder="verify password" name="verify_password"> </div>
+                <div class=""> <input type="text" placeholder="verify password" name="verify_password"> </div>
                 {{-- CHECKBOX FOR DATA COLLECTION --}}
                 <div class=""> <input type="checkbox" name="agree_data_collection"> I agree to Whise Smile Dental Clinic's collection of personal and dental information</div>
                 {{-- CHECKBOX FOR USER AGREEMENT AND PRIVACY POLICY --}}
