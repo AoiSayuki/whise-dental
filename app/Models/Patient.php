@@ -4,10 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
+use Illuminate\Auth\Authenticatable;
 
-class Patient extends Model
+class Patient extends Model implements AuthenticatableContract
 {
-    use HasFactory;
+    use HasFactory, Authenticatable;
 
     protected $fillable = [
         'last_name',
@@ -19,7 +21,7 @@ class Patient extends Model
         'home_address',
         'contact_number',
         'email_address',
-        'last_dental_visit',
+        'last_dentist_visit',
         'had_cavities',
         'have_tooth_sensitivity',
         'grind_or_clench_teeth',

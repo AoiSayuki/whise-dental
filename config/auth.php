@@ -38,7 +38,12 @@ return [
     'guards' => [
         'web' => [
             'driver' => 'session',
-            'provider' => 'users',
+            'provider' => 'patients',
+        ],
+        
+        'patient' => [
+            'driver' => 'session',
+            'provider' => 'patients',
         ],
     ],
 
@@ -60,10 +65,21 @@ return [
     */
 
     'providers' => [
-        'users' => [
-            'driver' => 'eloquent',
-            'model' => env('AUTH_MODEL', App\Models\User::class),
-        ],
+        //'users' => [
+           // 'driver' => 'eloquent',
+           // 'model' => env('AUTH_MODEL', App\Models\User::class),
+
+           'patients' => [
+                'driver' => 'eloquent',
+                'model' => App\Models\Patient::class,
+           ],
+
+
+        //    'users' => [ 
+        //         'driver' => 'database',
+        //         'table' => 'patients'
+        //    ]
+       // ],
 
         // 'users' => [
         //     'driver' => 'database',

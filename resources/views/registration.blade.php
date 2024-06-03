@@ -5,11 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="{{ asset('css/styles.css')}}">
-    <title>Whise Dental Clinic</title>
+    <title>Whise Smile Dental Clinic</title>
 </head>
 <body>
     {{-- HEADER FOR REGISTRATION --}}
-    @include('partials.registrationHeader')
+    <div class="header">
+        <a href="#"> 
+                <img src="{{ asset('images/LogoTranspa2Header.png')}}" alt="whise-logo" class="logo"> 
+        </a>
+        <h1 class="label">REGISTRATION</h1>
+        <div class="new-account"> <a href="#">NEW ACCOUNT</a> </div>
+    </div>    
 
     <div class="form-container">
         <form method="POST" action="{{ route('addPatient') }}" id="multi-step-form">

@@ -4,12 +4,16 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Patient;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
+//use Illuminate\Support\Facades\Hash;
+//use Illuminate\Validation\ValidationException;
 
 class PatientController extends Controller
 {
-    // public function showPatient(){
-    //     return view('registration');
-    // }
+    public function welcome(){
+        return view('welcome');
+    }
 
     public function createPatient(){
         return view('registration');
@@ -50,10 +54,49 @@ class PatientController extends Controller
             'password' => 'required',
         ]);
 
-        dd($patientData);
+        //dd($patientData);
         $newPatient = Patient::create($patientData);
 
         return redirect()->route('registration');
 
+    }
+
+    public function login(){
+        return view('login');
+    }
+
+    // public function loginAction(Request $request){
+    //     Validator::make($request->all(), [
+    //         'username'=> 'required',
+    //         'password'=> 'required'
+    //     ])->validate();
+
+    //     if (!Auth::attempt($request->only('username','password'), $request->boolean('remember'))){
+    //         throw ValidationException::withMessages(['username'=> trans('auth.failed')]);
+    //     }
+
+    //     $request->session()->regenerate();
+
+    //     return redirect()->route('welcome');
+    // }
+
+    public function loginAction(Request $request){
+        $request->validate([
+            'username' => 'required',
+            'password' => 'required',
+        ]);
+
+        $patient = Patient::where('username', $request->username)->first();
+
+        if ($patient && $patient->password === $request->password) {
+            Auth::guard('patient')->login($patient);
+            return redirect()->route('welcome');
+        }
+
+        // $credentials = $request->only('username', 'password');
+        // if (Auth::attempt(['username' => $request->username, 'password' => $request->password])) {
+        //     return redirect()->route('welcome');
+        // }
+        // return redirect(route('login'))->with("error", "Login details are not valid");
     }
 }
