@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PatientController;
+use App\Http\Controllers\TeethController;
 
 Route::get('/', function () {
     return view('registration');
@@ -19,3 +20,5 @@ Route::get('/welcome',[PatientController::class,'welcome'])->name('welcome');
 Route::get('/adminDashboard', function () {
     return view('adminDashboard');
 });
+
+Route::get('/patientDetails', [TeethController::class, 'displayTeeth'])->name('patientDetails');
