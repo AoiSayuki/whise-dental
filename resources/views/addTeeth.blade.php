@@ -21,7 +21,7 @@
 <body>
     @include('partials.adminHeader')
     <div class="teethForm">
-        <form action="#" method="POST" id="toothForm">
+        <form  method="POST" action="{{ route('addTeeth') }}" id="toothForm">
             @csrf
             {{-- WHOLE TEETH --}}
             <div class="toothContainer">

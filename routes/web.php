@@ -21,4 +21,5 @@ Route::get('/adminDashboard', function () {
     return view('adminDashboard');
 });
 
-Route::get('/patientDetails', [TeethController::class, 'displayTeeth'])->name('patientDetails');
+Route::get('/editTeeth', [TeethController::class, 'editTeeth'])->name('editTeeth');
+Route::post('/addTeeth', [TeethController::class, 'addTeeth'])->name('addTeeth');
